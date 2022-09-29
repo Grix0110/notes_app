@@ -1,12 +1,14 @@
-// import logo from './logo.svg';
-import './App.css';
+import { React } from "react";
+import "./Components/css/App.css";
+import Header from "./Components/NoteComponents/Header";
+import Notes from "./Components/NoteComponents/Notes";
 
 function App() {
-  return (
-    <div className="App">
-      <p>Hello World!</p>
-    </div>
-  );
+    return (
+        <div className="main">
+            <Header />
+            <Notes />
+        </div>
+    );
 }
-
 export default App;
