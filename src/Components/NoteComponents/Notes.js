@@ -5,22 +5,22 @@ import CreateNote from "./CreateNote";
 import { v4 as uuid } from "uuid";
 
 function Notes() {
-    const [notes, setNotes] = useState([]);
+    const [notes, setNotes] = useState(
+        JSON.parse(localStorage.getItem("Notes")) || []
+    );
     const [inputText, setInputText] = useState("");
-
-    //get the saved notes and add them to the array
-    useEffect(() => {
-        const data = JSON.parse(localStorage.getItem('Notes'));
-        console.log(data);
-        if (data) {
-            setNotes(data);
-        }
-    }, []);
 
     //saving data to local storage
     useEffect(() => {
         localStorage.setItem("Notes", JSON.stringify(notes));
     }, [notes]);
+
+    //get the saved notes and add them to the array
+    useEffect(() => {
+        let data = JSON.parse(localStorage.getItem("Notes"));
+        console.log("DATA from parse: ", data);
+        setNotes(data);
+    }, []);
 
     const textHandler = (e) => {
         setInputText(e.target.value);
@@ -31,8 +31,8 @@ function Notes() {
         setNotes((prevState) => [
             ...prevState,
             {
-                id: uuid(),
                 text: inputText,
+                id: uuid(),
             },
         ]);
         //clear the textarea
