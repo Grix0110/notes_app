@@ -9,6 +9,7 @@ function Notes() {
         JSON.parse(localStorage.getItem("Notes")) || []
     );
     const [inputText, setInputText] = useState("");
+    const [timeStamp, setTimeStamp] = useState("");
 
     //saving data to local storage
     useEffect(() => {
@@ -26,6 +27,8 @@ function Notes() {
         setInputText(e.target.value);
     };
 
+    const time = new Date().toString().slice(0, 24);
+
     // add new note to the state array
     const saveHandler = () => {
         setNotes((prevState) => [
@@ -33,8 +36,10 @@ function Notes() {
             {
                 text: inputText,
                 id: uuid(),
+                time: time,
             },
         ]);
+        setTimeStamp(time);
         //clear the textarea
         setInputText("");
     };
@@ -53,6 +58,7 @@ function Notes() {
                     id={note.id}
                     text={note.text}
                     deleteNote={deleteNote}
+                    time={notes.time}
                 />
             ))}
             <CreateNote
