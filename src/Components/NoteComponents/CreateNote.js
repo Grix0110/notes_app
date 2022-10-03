@@ -2,7 +2,7 @@ import { React } from "react";
 
 function CreateNote({ textHandler, saveHandler, inputText }) {
     //character limit
-    const charLimit = 100;
+    const charLimit = 175;
     const charLeft = charLimit - inputText.length;
 
     return (
@@ -13,13 +13,11 @@ function CreateNote({ textHandler, saveHandler, inputText }) {
                 value={inputText}
                 placeholder="Type...."
                 onChange={textHandler}
-                maxLength="100"
+                maxLength="175"
             ></textarea>
             <div className="note__footer">
-                <span className="label">{charLeft} left</span>
-                <button className="note__save" onClick={saveHandler}>
-                    Save
-                </button>
+                <span className="label">{charLeft}</span>
+                <button className="note__save" onClick={saveHandler}>💾</button>
             </div>
         </div>
     );

@@ -19,8 +19,7 @@ function Notes() {
     //get the saved notes and add them to the array
     useEffect(() => {
         let data = JSON.parse(localStorage.getItem("Notes"));
-        console.log("DATA from parse: ", data);
-        setNotes(data);
+        setNotes(data.reverse());
     }, []);
 
     const textHandler = (e) => {
@@ -58,7 +57,7 @@ function Notes() {
                     id={note.id}
                     text={note.text}
                     deleteNote={deleteNote}
-                    time={notes.time}
+                    time={note.time}
                 />
             ))}
             <CreateNote
